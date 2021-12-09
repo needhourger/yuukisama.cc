@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://blog.yuukisama.cc/about/</loc>
+    <lastmod>2021-12-09T15:24:14+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.yuukisama.cc/categories/</loc>
+  </url><url>
+    <loc>https://blog.yuukisama.cc/tags/</loc>
+  </url><url>
+    <loc>https://blog.yuukisama.cc/</loc>
+  </url>
+</urlset>
