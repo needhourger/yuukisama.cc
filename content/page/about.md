@@ -1,15 +1,19 @@
 ---
-title: "About"
-description: 
-date: 2021-12-09T15:24:14+08:00
-image: 
-math: 
-license: 
-hidden: false
-comments: true
-draft: false
+title: About
+description:
+date: '2019-02-28'
+aliases:
+  - about-us
+  - about-hugo
+  - contact
+license: CC BY-NC-ND
+lastmod: '2020-10-09'
+menu:
+    main: 
+        weight: -90
+        params:
+            icon: user
 ---
-
 # About me
 
 * 2021年12月9日，阴，在办公室窗边的座位上望着远处沉浸在冬季雨雾的远山。这是第几次倒腾博客呢？

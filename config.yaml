@@ -18,6 +18,8 @@ DefaultContentLanguage: zh-cn
 # This will make .Summary and .WordCount behave correctly for CJK languages.
 hasCJKLanguage: false
 
+enableRobotsTXT: true
+
 permalinks:
     post: /p/:slug/
     page: /:slug/
@@ -28,6 +30,8 @@ params:
     featuredImageField: image
     rssFullContent: true
     favicon: img/favicon.png
+
+    localSearch: true
 
     footer:
         since: 2017
@@ -194,33 +198,6 @@ menu:
               ### For demonstration purpose, the home link will be open in a new tab
               newTab: false
               icon: copy
-
-        - identifier: techology
-          name: Techology
-          url: /techology/
-          weight: -90
-          params:
-              ### For demonstration purpose, the home link will be open in a new tab
-              newTab: false
-              icon: brand-asana
-
-        - identifier: lifetime
-          name: Lifetime
-          url: /lifetime/
-          weight: -90
-          params:
-              ### For demonstration purpose, the home link will be open in a new tab
-              newTab: false
-              icon: brightness-up
-
-
-        - identifier: about
-          name: About
-          url: about
-          weight: -0
-          params:
-              newTab: false
-              icon: help
     
     social:
         - identifier: emial
