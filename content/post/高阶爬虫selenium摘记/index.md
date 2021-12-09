@@ -9,7 +9,7 @@ tags:
     - 爬虫
     - selenium
 ---
->## 概述
+## 概述
 
 * 本文记录一些有关python高阶爬虫selenium+浏览器爬虫操作的踩坑记录.
 * selenium
@@ -18,18 +18,18 @@ tags:
     
     selenium简单的说就是通过各种webdirver驱动去控制浏览器去访问网站,完成各种操作,从而达到爬取数据的目的.可以有效的规避多数反爬虫机制,列如用js动态生成的网站
 
-{% asset_img selenium.jpeg null %}
+![](selenium.jpeg)
 <!--more-->
 
->## Start
+## Start
 
->python version:3.5+
+python version:3.5+
 
->browser:Chrome
+browser:Chrome
 
->webdriver:chromedriver
+webdriver:chromedriver
 
->platform:Windows 10
+platform:Windows 10
 
 1. 首先安装selenium包
     ```
@@ -68,8 +68,8 @@ tags:
     
     ~~容我偷个懒~~
 
->## Advance
->~~其实也就是一系列踩坑行为~~
+## Advance
+~~其实也就是一系列踩坑行为~~
 
 1. ### 自定义webdriver以及浏览器可执行文件
     ```

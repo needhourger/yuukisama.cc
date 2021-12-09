@@ -7,16 +7,16 @@ categories:
 tags:
     - Python
 ---
->## Python常用技能汇总
->这里是一些写python脚本时常用的小技巧,长期更新
+## Python常用技能汇总
+* 这里是一些写python脚本时常用的小技巧,长期更新
 ~~咕咕咕~~
 
-{% asset_img Python.jpg Python娘,来源于萌娘百科 %}
+![Python娘,来源于萌娘百科](Python.jpg)
 
 <!--more-->
 
 ---
->### 获取脚本目录
+### 获取脚本目录
 
 * 脚本运行时相对路径时基于命令行的路径.这样直接在脚本里使用相对路径会出现问题.我们可以使用如下方法获得脚本所在的绝对路径,以及脚本本身的文件名.
     ```
@@ -27,7 +27,7 @@ tags:
     * FILE_NAME中就是脚本名称
 
 ---
->### 获取Windows用户目录
+### 获取Windows用户目录
 * 有时我们需要获取用户默认的下载目录,或者是文档目录等等
     ```
     import os
@@ -38,11 +38,11 @@ tags:
     * DOWNLOAD_PATH中存储了用户默认下载目录(如果用户没有自己重命名这个文件夹的话)
 
 ---
->### Python参数传递中的*args以及**kwargs
+### Python参数传递中的*args以及**kwargs
 * 事实上真正的python参数传递语法是* 和 **。*args和\*\*kwargs是我们一种约定俗成的写法。
 
 
-* >#### *args
+* #### *args
     * *args用来表示函数接受可变长度的 __非关键字__ 参数作为函数的输入
         ```
         def test(normal_arg, *args):
@@ -63,7 +63,7 @@ tags:
         4 arg is d
         ```
 
-* >#### **kwargs
+* #### **kwargs
     * **kwargs表示函数接受可变长度的关键字参数字典作为参数，即可以简单的理解为传入的是字典参数
         ```
         def test(**kwargs):
@@ -81,7 +81,7 @@ tags:
         value = 5
         ```
 
-* >#### What's more
+* #### What's more
     * 我们也可以使用这两个参数来调用一般参数格式的函数
         ```
         def func(arg1,arg2,arg3):

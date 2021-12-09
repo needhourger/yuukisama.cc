@@ -10,14 +10,14 @@ tags:
 comments: true
 ---
 
->## 开始前的碎碎念
+## 开始前的碎碎念
 
 ### 为了搭建这个小站，搜索了很多资料，踩了很多坑。这里努力写点有用的东西防止后人踩坑。希望阅读的读者遇到问题时思考自己是否是符合本样例的情况。
 
 这是一篇旨在使用linux服务器+nginx+hexo+git实现搭建个人博客的教学性质文章。
 
 <!--more-->
->## requires
+## requires
 * 一台服务器，本例子是linux centos,阿里的云服务器
 
     ```
@@ -31,7 +31,7 @@ comments: true
 * 本地电脑：window 10
 * nginx ; node.js ; hexo ; git ; npm
 ---
->## 本地电脑
+## 本地电脑
 1. 安装git
 
     * windows [下载](https://git-scm.com/downloads)
@@ -140,7 +140,7 @@ comments: true
     **在后续的服务器配置过程中，我们会把公钥设置在服务器上，这样git推送的时候就可以免去密码认证**
 
 ---
->## 服务器配置（linux）
+## 服务器配置（linux）
 
 1. 安装nginx
     ```
@@ -273,7 +273,7 @@ comments: true
         如果没有提示输入密码证明配置成功
     
 ---
->## 回到本地电脑
+## 回到本地电脑
 
 1. 编辑blog下的配置文件_config.yml
 

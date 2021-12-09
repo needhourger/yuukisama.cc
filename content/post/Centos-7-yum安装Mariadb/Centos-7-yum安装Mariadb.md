@@ -8,17 +8,17 @@ tags:
     - 数据库
 ---
 
->## 摘要
+## 摘要
 * Centos7 下安装mariaDB数据库的操作记录。
 * MariaDB数据库是mysql的衍生版。centos发行版在centos6之后就将默认数据库改为了mariadb。[因为MySQL被甲骨文公司收购后存在闭源风险](https://www.zhihu.com/question/41832866)
 
-{% asset_img Linux.jpg 图片来源萌娘百科 %}
+![图片来源萌娘百科](Linux.jpg)
 
 <!--more-->
 
 * 这次安装的目的，也是处于小站之后的发展考虑。
 
->## 安装
+## 安装
 * linux服务器，阿里云的ECS
     ```
     [root@host /]# lsb_release -a
@@ -33,7 +33,7 @@ tags:
     ```
     yum install mariadb mariadb-server -y
     ```
->## 配置
+## 配置
 * 启动数据库
     ```
     systemctl start mariadb

@@ -19,10 +19,10 @@ tags:
     * CreateProcess()
     
 
-{% asset_img lobei.jpg 萝卜啊！赐予我力量！ %}
+![萝卜啊！赐予我力量！](lobei.jpg)
 <!--more-->
 
->## 综述
+## 综述
 在调用外部exe程序的同时还想要获得程序运行过程中的输出内容。本文介绍的主要是使用管道的方法。不涉及内存共享等一类的方法。
 
 本文中假定所有的父程序即parent.exe；子程序为child.exe
@@ -41,7 +41,7 @@ tags:
     }
     ```
 
->## System()
+## System()
 * 这是c/c++的标准函数之一，可以执行命令行命令。也可以在linux下调用。[详情文档参见cplusplus](http://www.cplusplus.com/reference/cstdlib/system/)
 
 * 函数原型
@@ -93,7 +93,7 @@ tags:
     参数0为程序本身，参数1为传入的参数
     **坑：** 为森魔丢了argv3的ar？？？我也不知道，大佬了解的可以解答一下。result.txt里是全的，读取文件出了问题？？？
 
->## WinExec()
+## WinExec()
 * Windows API 函数[（个人建议微软爸爸的函数还是看微软爸爸的文档最合适）](https://docs.microsoft.com/en-us/windows/desktop/api/winbase/nf-winbase-winexec)
 * 函数原型：
     ```
@@ -102,7 +102,7 @@ tags:
         UINT   uCmdShow     //显示模式，设置不同的参数可以实现控制台隐藏等等
     );
     ```
-    >返回值：如果函数成功，则返回值大于31。 如果函数失败，则返回值会表示错误类型，详情参见文档
+    * 返回值：如果函数成功，则返回值大于31。 如果函数失败，则返回值会表示错误类型，详情参见文档
 
 * 调用子程序并获得其回显
 
@@ -139,7 +139,7 @@ tags:
     ```
     可以看得出来system()和WinExec()的差别，WinExec()会把最后重定向输出到文本文件也作为一个参数。
 
->## ShellExecute()
+## ShellExecute()
 * Window API函数，[详情文档参见微软官方文档](https://docs.microsoft.com/en-us/windows/desktop/api/shellapi/nf-shellapi-shellexecutea)
     
 * 函数原型
@@ -154,7 +154,7 @@ tags:
     );
     ```
     **坑：** 你可以在lpFile参数中直接写全文件路径，这样的话文件的工作目录就会是父程序的工作目录。如果不屑写全的话可以在lpFile中写上文件名，lpDirectory中写明文件所在路径。这样的话启动的子程序的默认工作路径也得到了指定。
-    > 返回值：
+    * 返回值：
     函数返回一个HINSTANCE(实质是一个无符号的整形)，大于32表明子程序调用成功，小于32则表明调用失败。微软官方文档有详情解释每个错误的返回值的含义。
 
 * 调用子程序
@@ -179,7 +179,7 @@ tags:
     }
     ```
 
->## ShellExecuteEx()
+## ShellExecuteEx()
 * Window API函数，[详情文档](https://docs.microsoft.com/zh-cn/windows/desktop/api/shellapi/nf-shellapi-shellexecutew)
     * 这个函数是ShellExecute的扩展函数
     * 可以实现阻塞调用子程序
@@ -189,7 +189,7 @@ tags:
         SHELLEXECUTEINFOW *pExecInfo    //指向SHELLEXECUTEINFO结构体的指针，该结构体中包含你所要调用的程序的相关信息
     );
     ```
-    >返回值：显而易见，True表示执行成功，反之，失败.
+    * 返回值：显而易见，True表示执行成功，反之，失败.
 
 * 调用子程序示例
 
@@ -218,7 +218,7 @@ tags:
     }
     ```
 
->## CreatePipe() && CreateProcess()
+## CreatePipe() && CreateProcess()
 * Window API函数，理论上调用外部exe并且获得其执行输出的最佳方案，但是函数很复杂，参数众多。[依旧是微软爸爸的文档](https://docs.microsoft.com/en-us/windows/desktop/api/processthreadsapi/nf-processthreadsapi-createprocessa)
     
     ~~并且本人的项目中致死都没有成功使用这个函数，个人认为是因为项目使用的SDK在多线程支持方面存在问题？？？~~
@@ -234,7 +234,7 @@ tags:
     );
 
     ```
-    >返回值：如果函数成功，则返回值为非零。
+    * 返回值：如果函数成功，则返回值为非零。
 
     ```
     BOOL CreateProcessA(
@@ -250,7 +250,7 @@ tags:
         LPPROCESS_INFORMATION lpProcessInformation  //子进程信息
     );
     ```
-    >返回值：如果函数成功，则返回值为非零。
+    * 返回值：如果函数成功，则返回值为非零。
 
 
     这是两个相当复杂的参数，其中包含多个结构体，每个结构体我们还需要单独讲解。接下来直接以源码搭配注释理解

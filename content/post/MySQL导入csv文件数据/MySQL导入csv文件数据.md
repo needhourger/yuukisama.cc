@@ -8,21 +8,21 @@ tags:
     - 数据库
 ---
 
->## 摘要
+## 摘要
 * 记录关于MySQL从csv文件导入数据的一些采坑记录
 
-{% asset_img star.jpg %}
+![](star.jpg)
 
 <!--more-->
 
->## 什么是csv文件
+## 什么是csv文件
 
 * csv文件本质只是一个文本文件，它与你所见过的txt文件别无差异。（对，除了excel，你还可以用txt打开这类文件）
 * csv文件（Comma-Separated Values）逗号分隔值文件格式，其文件以**纯文本**形式存储表格数据，并且以逗号分隔。
 
->## 怎样将数据从csv导入到mysql
+## 怎样将数据从csv导入到mysql
 
-* >### 如果你看到如下报错
+* ### 如果你看到如下报错
     
     ```
     The MySQL server is running with the --secure-file-priv option so it cannot execute...
@@ -72,9 +72,9 @@ tags:
     ```
     如果出现的回显中包含你之前设置的路径，则表示路径修改成功过
     
-    {% asset_img 1.jpg %}
+    ![](1.jpg)
 
-* >### 文件字符编码问题
+* ### 文件字符编码问题
 
     要想成功导入文件，必须保证csv文件编码格式与数据库的编码格式相同。
 
@@ -134,16 +134,16 @@ tags:
 
     1. 使用notepad++打开csv文件,右下角就会标注这个文件的编码
 
-    {% asset_img 3.jpg %}
+    ![](3.jpg)
 
     1. 选择编码->选择转为UTF-8编码,最后保存退出即可
 
-    {% asset_img 4.jpg %}
+    ![](4.jpg)
 
     **不建议使用txt修改，因为txt的UTF-8格式是带有BOM的，导入时依旧会报错**
 
 
-* >### 导入命令问题
+* ### 导入命令问题
 
     仅仅使用
     ```
@@ -155,7 +155,7 @@ tags:
     ```
     因为我们需要指定你准备导入的csv文件格式
 
-    > 完整命令
+    * 完整命令
 
     ```
     LOAD DATA INFILE "D:/CoderLife/testMySQL/test.csv" -- 指定csv文件路径，路径必须是我们一开始设置的
@@ -165,7 +165,7 @@ tags:
     LINES TERMINATED BY "\r\n"; -- 指定行按照如上格式换行
     ```
 
-    * >### 拓展补充 
+    * ### 拓展补充 
         * \r 回车符
         * \n 换行符
         * window环境下文本文件换行多数以“\r\n”为换行符
@@ -173,14 +173,14 @@ tags:
 
     有关这个导入命令的详解，可以移步[这篇文章](https://blog.csdn.net/haijiege/article/details/78365063)
 
-* >### 报错“ Duplicate entry for key ...”
+* ### 报错“ Duplicate entry for key ...”
 
     这个报错是因为你之前的表内有数据导致了主键冲突，方法删除旧的表内的内容。
     ```
     delete from table_name
     ```
 
-* >### 报错“Row does not contain data for all columns”
+* ### 报错“Row does not contain data for all columns”
 
     这个报错是因为csv内的数据并没有包含表的所有键值，那么这就需要在我们导入数据的时候指定导入数据数据那几列
     就是在之前上面的导入代码最后加上一个括号，里面按照csv数据列的顺序依次标注其键名
@@ -193,7 +193,7 @@ tags:
     (key1,key2,key3); -- 指定你需要导入的键
     ```
     
-* >### 报错“ Incorrect integer value: xxx”
+* ### 报错“ Incorrect integer value: xxx”
     
     这个报错是因为csv文件第一行存在着表头数据，我们可以数用如下命令忽略第一行
     ```
@@ -206,7 +206,7 @@ tags:
     (key1,key2,key3); -- 指定你需要导入的键
     ```
     
-* >### 关于字符编码问题的补充
+* ### 关于字符编码问题的补充
     
     其实可以通过指定导入的csv文件编码来保证字符编码问题，使用如下命令
     ```

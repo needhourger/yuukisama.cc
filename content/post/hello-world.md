@@ -2,7 +2,7 @@
 title: Hello World
 ---
 
->## 一些写在开始的碎碎念
+## 一些写在开始的碎碎念
 
 
 * 折腾了好久才建好这个万恶的博客。以前是用的lnmp环境外傻瓜式的wordpress搭建了一个积灰博客。这次一切推到重来，使用新的框架——nginx+hexo的组合。
@@ -13,5 +13,4 @@ title: Hello World
 
 * 顺便这里应该是个二次元的主题站点吧，就这样。
 
-![](/static/images/emmmm.jpg)
 

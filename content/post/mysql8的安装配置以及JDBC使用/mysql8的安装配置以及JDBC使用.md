@@ -8,7 +8,7 @@ tags:
     - 数据库
 ---
 
->## 摘要
+## 摘要
 
 * 基于windows下mysql 8.0.*版本安装以及配置等操作介绍
     * 基本安装
@@ -18,11 +18,11 @@ tags:
     * 创建列表
 * 以及书本《Java简明教程》实列代码的采坑
 
-{% asset_img Sqlserver.jpg 没找到mysql娘的图片 %}
+![](Sqlserver.jpg)
 
 <!--more-->
 
->## 安装
+## 安装
 
 1. 从mysql官网下载mysql社区版本
 
@@ -35,9 +35,9 @@ tags:
     ```
     [不会配置环境变量？？？](https://jingyan.baidu.com/article/00a07f3876cd0582d128dc55.html)
 
-1. 如果你是用可执行安装包安装，即msi文件安装请参照[这个](https://blog.csdn.net/CSDN_Liang_1991/article/details/81035293)
+2. 如果你是用可执行安装包安装，即msi文件安装请参照[这个](https://blog.csdn.net/CSDN_Liang_1991/article/details/81035293)
 
->## 配置
+## 配置
 1. 进入myql的安装目录（就是你放加压后文件夹的地方）,找到里面的bin文件夹。
 
     在该文件夹下点击窗体左上方文件 -> 找到“打开powershell” -> 选择“以管理员身份打开powershell” -> 运行如下命令
@@ -137,7 +137,7 @@ tags:
 
     **坑:请先切换到你要创建表的数据库再执行创建表明操作**
 
->## java连接数据库
+## java连接数据库
 
 1. 在mysql官网下载mysql connector的java sdk.请按照你的数据库版本下载对应的connector [下载地址](https://dev.mysql.com/downloads/connector/j/)
 
@@ -185,7 +185,7 @@ tags:
     
     USER默认"root",PASS如果为空则使用空字符串即可，有密码请确保密码正确
 
->## 数据库连接代码示例
+## 数据库连接代码示例
 
 ### 请确保已经将mysqlconnector加入项目构建目录，参照[将jar文件加入你的java项目](#将jar文件加入你的java项目)
 

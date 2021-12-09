@@ -8,7 +8,7 @@ tags:
     - Python
     - 爬虫
 ---
->## 问题背景
+## 问题背景
 * 这是遇到的一个天坑！ ~~这么过分的坑一定要写下来！！！！~~
 * 项目需求：
     * 爬取一个位于国外的网站，所以需要使用proxy，这里使用socks5代理
@@ -28,7 +28,7 @@ tags:
 <!--more-->
 
 ---
->## SSL module is not available
+## SSL module is not available
 * 出现如上错误表明程序未能正确加载引用ssl
 
 * 如果你是linux系统，linux系统使用源码编译出来的python在编译过程种没有设定编译ssl库，建议重新编译安装python。或者尝试通过pip安装openssl 
@@ -38,7 +38,7 @@ tags:
 
 
 ---
->## bad handshake: SysCallError(-1, 'Unexpected EOF')
+## bad handshake: SysCallError(-1, 'Unexpected EOF')
 
 * 这是最坑的一个错误
 
