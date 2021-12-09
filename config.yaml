@@ -55,7 +55,14 @@ params:
 
     comments:
         enabled: true
-        provider: disqus
+        provider: gitment
+
+        gitment:
+            owner: needhourger
+            repo: blog
+            oauth:
+                client_id: aefc176d9cfea58e62d0
+                client_secret: 4887d80bd50168d9039e43daf30af4da4b3e14a7
 
         disqusjs:
             shortname:
@@ -178,6 +185,13 @@ menu:
               ### For demonstration purpose, the home link will be open in a new tab
               newTab: false
               icon: home
+        - identifier: about
+          name: About
+          url: /about/
+          weight: -90
+          params:
+              newTab: false
+              icon: help
     
     social:
         - identifier: emial
@@ -185,6 +199,7 @@ menu:
           url: mailto:Chainyuuki@gmail.com
           params:
             icon: mail
+
         - identifier: github
           name: GitHub
           url: https://github.com/needhourger
