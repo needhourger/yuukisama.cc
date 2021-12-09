@@ -2,7 +2,7 @@
 title: "About"
 description: 
 date: 2021-12-09T15:24:14+08:00
-image: https://up.enterdesk.com/edpic/26/a5/3c/26a53c9296c66296fa03ce48bd2acd8c.jpg
+image: 
 math: 
 license: 
 hidden: false

@@ -1,4 +1,4 @@
-baseurl: https://example.com
+baseurl: https://needhourger.github.io
 languageCode: zh-cn
 theme: hugo-theme-stack
 paginate: 5
@@ -157,7 +157,7 @@ params:
         opengraph:
             enabled: false
             local: false
-            src:
+            src: https://up.enterdesk.com/edpic/26/a5/3c/26a53c9296c66296fa03ce48bd2acd8c.jpg
 
     colorScheme:
         # Display toggle
