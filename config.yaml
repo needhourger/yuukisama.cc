@@ -30,8 +30,8 @@ params:
     favicon: img/favicon.png
 
     footer:
-        since: 2020
-        customText:
+        since: 2017
+        customText: Try to remember
 
     dateFormat:
         published: Jan 02, 2006
@@ -180,6 +180,11 @@ menu:
               icon: home
     
     social:
+        - identifier: emial
+          name: E-Mail
+          url: mailto:Chainyuuki@gmail.com
+          params:
+            icon: mail
         - identifier: github
           name: GitHub
           url: https://github.com/needhourger
