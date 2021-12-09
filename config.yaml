@@ -185,10 +185,39 @@ menu:
               ### For demonstration purpose, the home link will be open in a new tab
               newTab: false
               icon: home
+
+        - identifier: categories
+          name: Categories
+          url: /categories/
+          weight: -90
+          params:
+              ### For demonstration purpose, the home link will be open in a new tab
+              newTab: false
+              icon: copy
+
+        - identifier: techology
+          name: Techology
+          url: /techology/
+          weight: -90
+          params:
+              ### For demonstration purpose, the home link will be open in a new tab
+              newTab: false
+              icon: brand-asana
+
+        - identifier: lifetime
+          name: Lifetime
+          url: /lifetime/
+          weight: -90
+          params:
+              ### For demonstration purpose, the home link will be open in a new tab
+              newTab: false
+              icon: brightness-up
+
+
         - identifier: about
           name: About
-          url: /about/
-          weight: -90
+          url: about
+          weight: -0
           params:
               newTab: false
               icon: help
