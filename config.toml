@@ -648,7 +648,7 @@ uglyURLs = false
     gitalkPerPage = 10
     gitalkLanguage = "en"
     gitalkPagerDirection = "last"
-    gitalkCreateIssueManually = false
+    gitalkCreateIssueManually = true
     gitalkProxy = "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"
     gitalkEnableHotKey = true
     # 说明：https://github.com/gitalk/gitalk
