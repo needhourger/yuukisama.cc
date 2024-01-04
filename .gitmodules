@@ -4,6 +4,3 @@
 [submodule "themes/meme"]
 	path = themes/meme
 	url = https://github.com/reuixiy/hugo-theme-meme.git
-[submodule "themes/shiny-night"]
-	path = themes/shiny-night
-	url = git@github.com:needhourger/shiny-night.git
