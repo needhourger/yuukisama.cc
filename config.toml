@@ -24,8 +24,8 @@ pluralizeListTitles = false
 # 摘要的字数限制
 summaryLength = 48
 
-# 是否开启 GitHub 风格的 Emoji 书写方式
-enableEmoji = false
+# 是否开启Emoji支持
+enableEmoji = true
 
 # 脚注的返回链接中的文本
 footnoteReturnLinkContents = "↩"
@@ -106,7 +106,7 @@ uglyURLs = false
     # 网站（默认值：baseURL）
     website = "https://yuukisama.cc/"
     # 推特
-    twitter = ""
+    twitter = "yukiricc"
 
 # 相关文章
 [related]
@@ -197,25 +197,25 @@ uglyURLs = false
     #     post = "home"
     [[menu.main]]
         pageref = "/posts/"
-        name = "文章"
+        name = "Posts"
         weight = 1
         pre = "internal"
         post = "archive"
     [[menu.main]]
         pageref = "/categories/"
-        name = "分类"
+        name = "Categories"
         weight = 2
         pre = "internal"
         post = "th"
     [[menu.main]]
         pageref = "/tags/"
-        name = "标签"
+        name = "Tags"
         weight = 5
         pre = "internal"
         post = "tags"
     [[menu.main]]
         pageref = "/about/"
-        name = "关于"
+        name = "About"
         weight = 6
         pre = "internal"
         post = "user-circle"
@@ -251,7 +251,6 @@ uglyURLs = false
     # 说明：对弹性布局的顶栏无效
 
     # 背景
-    # headerBackground = "linear-gradient(90deg, #f795331a 0, #f370551a 15%, #ef4e7b1a 30%, #a166ab1a 44%, #5073b81a 58%, #1098ad1a 72%, #07b39b1a 86%, #6dba821a 100%)"
     headerBackground = "linear-gradient(90deg, #f795331a 0, #f370551a 15%, #ef4e7b1a 30%, #a166ab1a 44%, #5073b81a 58%, #1098ad1a 72%,#07b39b1a 86%, #6dba821a 100%)"
     # 说明：https://developer.mozilla.org/zh-CN/docs/Web/CSS/background
 
@@ -339,7 +338,7 @@ uglyURLs = false
     # 说明：用于 JSON-LD、Open Graph
 
     # 站点的描述
-    siteDescription = "一个陌生人捡拾记忆贝壳的海滩"
+    siteDescription = "思海拾贝"
     # 说明：用于 HTML 的头部元数据、JSON-LD、
     #      Open Graph、Atom、RSS
 
@@ -639,8 +638,8 @@ uglyURLs = false
 
     ## Gitalk
     enableGitalk = true
-    gitalkClientID = "aefc176d9cfea58e62d0"
-    gitalkClientSecret = "4887d80bd50168d9039e43daf30af4da4b3e14a7"
+    gitalkClientID = "5a79f1eceaf22102ad9f"
+    gitalkClientSecret = "29bb5b70a81e5a1943bd5385b4a6a4541fb4a499"
     gitalkRepo = "https://github.com/needhourger/needhourger.github.io.git"
     gitalkOwner = "needhouger"
     gitalkAdmin = ["needhourger"]
@@ -780,7 +779,7 @@ uglyURLs = false
     readingTimeIcon = "clock"
 
     # 是否显示不蒜子页面浏览量
-    displayBusuanziPagePV = false
+    displayBusuanziPagePV = true
     # 不蒜子页面浏览量的图标
     busuanziPagePVIcon = "eye"
     # 说明：仅在生产环境（production）下渲染
@@ -1248,7 +1247,7 @@ uglyURLs = false
     # 自定义页脚（支持 Markdown）
     customFooter = ""
 
-    displayBusuanziSiteUVAndPV = false
+    displayBusuanziSiteUVAndPV = true
     busuanziSiteUVText = "本站访客数"
     busuanziSiteUVIcon = "user"
     busuanziSitePVText = "本站访问量"
