@@ -22,7 +22,7 @@ defaultContentLanguageInSubdir = false
 pluralizeListTitles = false
 
 # 摘要的字数限制
-summaryLength = 48
+summaryLength = 100
 
 # 是否开启Emoji支持
 enableEmoji = true
@@ -31,7 +31,7 @@ enableEmoji = true
 footnoteReturnLinkContents = "↩"
 
 # 是否启用 Git 版本信息
-enableGitInfo = false
+enableGitInfo = true
 
 # 是否生成 robots.txt 文件
 enableRobotsTXT = true
@@ -711,7 +711,7 @@ uglyURLs = false
     # 注意：只支持 HSL 颜色值
 
     # 文章的内容宽度
-    postWidth = 70
+    postWidth = 64
     # 说明：如果留空（""），则用 42 作为默认值
     #      单位：em
 
