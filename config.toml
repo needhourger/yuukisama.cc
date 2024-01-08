@@ -628,12 +628,12 @@ uglyURLs = false
     # 说明：https://valine.js.org/
 
     ## Utterances
-    enableUtterances = false
-    utterancesRepo = ""
-    utterancesIssueTerm = "pathname"
+    enableUtterances = true
+    utterancesRepo = "needhourger/needhourger.github.io"
+    utterancesIssueTerm = "url"
     utterancesTheme = "github-light"
     utterancesThemeDark = "photon-dark"
-    utterancesLabel = ""
+    utterancesLabel = "💬"
     # 说明：https://utteranc.es/
 
     ## Gitalk
@@ -648,7 +648,7 @@ uglyURLs = false
     gitalkPerPage = 10
     gitalkLanguage = "zh"
     gitalkPagerDirection = "last"
-    gitalkCreateIssueManually = true
+    gitalkCreateIssueManually = false
     gitalkProxy = "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"
     gitalkEnableHotKey = true
     # 说明：https://github.com/gitalk/gitalk
