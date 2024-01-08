@@ -637,7 +637,7 @@ uglyURLs = false
     # 说明：https://utteranc.es/
 
     ## Gitalk
-    enableGitalk = true
+    enableGitalk = false
     gitalkClientID = "5a79f1eceaf22102ad9f"
     gitalkClientSecret = "29bb5b70a81e5a1943bd5385b4a6a4541fb4a499"
     gitalkRepo = "needhourger.github.io"
@@ -648,7 +648,7 @@ uglyURLs = false
     gitalkPerPage = 10
     gitalkLanguage = "zh"
     gitalkPagerDirection = "last"
-    gitalkCreateIssueManually = false
+    gitalkCreateIssueManually = true
     gitalkProxy = "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"
     gitalkEnableHotKey = true
     # 说明：https://github.com/gitalk/gitalk
