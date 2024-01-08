@@ -630,20 +630,20 @@ uglyURLs = false
     ## Utterances
     enableUtterances = true
     utterancesRepo = "needhourger/needhourger.github.io"
-    utterancesIssueTerm = "url"
-    utterancesTheme = "github-light"
+    utterancesIssueTerm = "pathname"
+    utterancesTheme = "preferred-color-scheme"
     utterancesThemeDark = "photon-dark"
     utterancesLabel = "💬"
     # 说明：https://utteranc.es/
 
     ## Gitalk
     enableGitalk = false
-    gitalkClientID = "5a79f1eceaf22102ad9f"
-    gitalkClientSecret = "29bb5b70a81e5a1943bd5385b4a6a4541fb4a499"
-    gitalkRepo = "needhourger.github.io"
-    gitalkOwner = "needhourger"
-    gitalkAdmin = ["needhourger"]
-    gitalkLable = ["Gitalk"]
+    gitalkClientID = ""
+    gitalkClientSecret = ""
+    gitalkRepo = ""
+    gitalkOwner = ""
+    gitalkAdmin = [""]
+    gitalkLable = [""]
     gitalkDistractionFreeMode = false
     gitalkPerPage = 10
     gitalkLanguage = "zh"
@@ -711,7 +711,7 @@ uglyURLs = false
     # 注意：只支持 HSL 颜色值
 
     # 文章的内容宽度
-    postWidth = 42
+    postWidth = 70
     # 说明：如果留空（""），则用 42 作为默认值
     #      单位：em
 
