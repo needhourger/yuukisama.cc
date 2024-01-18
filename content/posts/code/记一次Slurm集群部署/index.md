@@ -5,7 +5,7 @@ description:    ""
 date:           2023-07-13T00:52:36+08:00
 image:          ""
 tags:           []
-categories:     []
+categories:     ["CODE"]
 draft: false
 ---
 # 记一次Slurm集群环境部署

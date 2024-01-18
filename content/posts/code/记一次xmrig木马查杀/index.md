@@ -4,8 +4,8 @@ subtitle:       ""
 description:    ""
 date:           2024-01-10T14:26:37+08:00
 image:          "0.PNG"
-tags:           []
-categories:     []
+tags:           ["Security"]
+categories:     ["CODE"]
 draft: false
 ---
 ![](./0.PNG)
