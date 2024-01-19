@@ -62,6 +62,13 @@ Host github.com
   IdentityFile "~/.ssh/id_rsa"
   TCPKeepAlive yes
   ProxyCommand nc -v -x localhost:10808 %h %p
+
+# github的ssh也可以使用443端口，具体哪个好用可能和爬墙头的姿势有关系
+Host github.com
+  Hostname ssh.github.com
+  Port  443
+  User git
+  ProxyCommand nc -v -x localhost:10808 %h %p
 ```
 nc即[netcat](https://zh.wikipedia.org/zh-sg/Netcat)号称网络瑞士军刀的一个小工具，如果没有需要安装一下。
 
