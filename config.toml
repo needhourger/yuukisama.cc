@@ -51,7 +51,6 @@ uglyURLs = false
 
 # 类别
 [taxonomies]
-    category = "categories"
     tag = "tags"
 
 # 修改时间
@@ -77,10 +76,10 @@ uglyURLs = false
         [markup.goldmark.renderer]
             hardWraps = false
             unsafe = true
-            xHTML = false
+            xHTML = true
     [markup.highlight]
         codeFences = true
-        guessSyntax = false
+        guessSyntax = true
         lineNos = true
         lineNumbersInTable = true
         noClasses = false
@@ -338,7 +337,7 @@ uglyURLs = false
     # 说明：用于 JSON-LD、Open Graph
 
     # 站点的描述
-    siteDescription = "思海拾贝"
+    siteDescription = "Someone write something"
     # 说明：用于 HTML 的头部元数据、JSON-LD、
     #      Open Graph、Atom、RSS
 
@@ -368,7 +367,7 @@ uglyURLs = false
     # 的树状分类，故如需保留树状分类，建议适应
     # Hugo 的设计理念——分区。
 
-    categoryBy = "categories"
+    categoryBy = "sections"
     # 注意：如果你设置为 `sections`，请务必将
     #      此配置文件中的类别（taxonomies）中
     #      的 `categories` 删除，不然分类页
@@ -381,7 +380,7 @@ uglyURLs = false
     # 分类页面
 
     # 是否开启树状布局
-    enableTree = false
+    enableTree = true
     # 注意：如果你设置 categoryBy 为
     # `sections`，则无法关闭树状布局
 
@@ -461,7 +460,7 @@ uglyURLs = false
     # 说明：分区的名字即站点的 content 目录下
     #      的文件夹的名字。
 
-    mainSections = ["posts"]
+    mainSections = ["code","life"]
 
 
     ######################################
@@ -711,7 +710,7 @@ uglyURLs = false
     # 注意：只支持 HSL 颜色值
 
     # 文章的内容宽度
-    postWidth = 64
+    postWidth = 42
     # 说明：如果留空（""），则用 42 作为默认值
     #      单位：em
 
@@ -958,7 +957,7 @@ uglyURLs = false
     ######################################
     ## 字号（单位：px）
 
-    fontSize = 16
+    fontSize = 20
 
     ######################################
     ## 制表符的宽度
@@ -1018,7 +1017,7 @@ uglyURLs = false
     ## 大型小写（英文）
 
     # 是否开启（全局设置）
-    enableSmallCaps = false
+    enableSmallCaps = true
     # 说明：只会应用到分节标题和目录标题
     #      文章的 Front Matter 中的 `smallCaps`
     #      的优先级高于此处
@@ -1072,7 +1071,7 @@ uglyURLs = false
     # 文章的 Git 版本信息
 
     # 是否开启
-    enablePostGitInfo = false
+    enablePostGitInfo = true
 
     # 是否显示（全局设置）
     displayPostGitInfo = false
@@ -1080,7 +1079,7 @@ uglyURLs = false
     #      的优先级高于此处
 
     # 仓库地址
-    repoURL = ""
+    repoURL = "https://github.com/needhourger/yuukisama.cc"
     # 编辑地址
     repoEditURL = ""
 
