@@ -192,18 +192,12 @@ uglyURLs = false
 
 [menu]
     ## 菜单栏
-    # [[menu.main]]
-    #     pageref = "/"
-    #     name = "首页"
-    #     weight = 1
-    #     pre = "internal"
-    #     post = "home"
     [[menu.main]]
-        pageref = "/posts/"
-        name = "Posts"
+        pageref = "/"
+        name = "Home"
         weight = 1
         pre = "internal"
-        post = "archive"
+        post = "home"
     [[menu.main]]
         pageref = "/categories/"
         name = "Categories"
