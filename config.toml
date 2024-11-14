@@ -61,6 +61,12 @@ uglyURLs = false
 [frontmatter]
     lastmod = ["lastmod", ":git", ":fileModTime", ":default"]
 
+[pagination]
+    disableAliases = false
+    # 每一分页的文章数（仅对「文章摘要」首页布局有效）
+    pagerSize = 5
+    path = 'page'
+
 # Markdown 渲染器
 [markup]
     defaultMarkdownHandler = "goldmark"
@@ -95,21 +101,6 @@ uglyURLs = false
 # 压缩 HTML
 [minify.tdewolff.html]
     keepWhitespace = false
-
-# 作者信息
-[author]
-    # 名字
-    name = "Yuuki"
-    # 邮箱
-    email = "chainyuuki@gmail.com"
-    # 座右铭或简介
-    motto = "Your choice. You suffer."
-    # 头像
-    avatar = "/icons/apple-touch-icon.png"
-    # 网站（默认值：baseURL）
-    website = "https://yuukisama.cc/"
-    # 推特
-    twitter = "yukiricc"
 
 # 相关文章
 [related]
@@ -1476,3 +1467,20 @@ uglyURLs = false
         valine = "/npm/valine@1.4.14/dist/Valine.min.js"
         busuanzi = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
         utterances = "https://utteranc.es/client.js"
+
+
+    ######################################
+    # 作者信息
+    [params.author]
+        # 名字
+        name = "Yuuki"
+        # 邮箱
+        email = "chainyuuki@gmail.com"
+        # 座右铭或简介
+        motto = "Your choice. You suffer."
+        # 头像
+        avatar = "/icons/apple-touch-icon.png"
+        # 网站（默认值：baseURL）
+        website = "https://yuukisama.cc/"
+        # 推特
+        twitter = "yukiricc"
