@@ -42,21 +42,39 @@ docker load < n8n.tar.gz
 - 除此之外，因为在这个 k8s 集群上还部署有很多其他的服务，并且服务之间是通过路由路径区分的，而不是通过子域名的方式，而 n8n 官方文档中默认推荐是按照子域名的方式部署。因此我们需要给容器服务添加一个环境变量`N8N_PATH=/n8n/`，以使得我们可以通过类似 example.com/n8n 这样的路径去访问 n8n 服务。
 - 容器服务运行在 `5678` 端口，因此需要开放此端口。
 
+- 当服务运行内容出现如下报错
+
+```log
+Invalid number value for N8N_PORT: tcp://10.33.151.62:5678
+No encryption key found - Auto-generating and saving to: /home/node/.n8n/config
+Error: Command "start" not found
+```
+
+- 则说明所配置的服务存储卷的权限有问题，n8n无法正确写入持久化信息，因此你可能需要在yaml中加入如下字段
+
+```yaml
+          securityContext:
+            runAsGroup: 1000
+            runAsUser: 1000
+```
+
+- 总体服务的yaml范例
+
 ```yaml
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    k8s.kuboard.cn/displayName: ""
+    k8s.kuboard.cn/displayName: ''
   labels:
     k8s.kuboard.cn/name: n8n
   name: n8n
   namespace: dev
-  resourceVersion: "40818369"
+  resourceVersion: '41207644'
 spec:
   progressDeadlineSeconds: 600
-  replicas: 0
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -69,7 +87,7 @@ spec:
   template:
     metadata:
       annotations:
-        kubectl.kubernetes.io/restartedAt: "2025-07-18T17:35:21+08:00"
+        kubectl.kubernetes.io/restartedAt: '2025-07-23T16:26:38+08:00'
       creationTimestamp: null
       labels:
         k8s.kuboard.cn/name: n8n
@@ -78,7 +96,9 @@ spec:
         - env:
             - name: N8N_PATH
               value: /n8n/
-          image: "docker.n8n.io/n8nio/n8n:latest"
+            - name: N8N_HOST
+              value: example.com
+          image: 'docker.n8n.io/n8nio/n8n:latest'
           imagePullPolicy: IfNotPresent
           name: n8n
           ports:
@@ -86,8 +106,14 @@ spec:
               name: http
               protocol: TCP
           resources: {}
+          securityContext:
+            runAsGroup: 1000
+            runAsUser: 1000
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /home/node/.n8n
+              name: volume-n8n-data
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -96,22 +122,26 @@ spec:
       volumes:
         - name: volume-n8n-data
           persistentVolumeClaim:
-            claimName: gl-log-ai-copilot-pvc
+            claimName: gl-log-n8n-pvc
 status:
+  availableReplicas: 1
   conditions:
-    - lastTransitionTime: "2025-07-21T05:45:32Z"
-      lastUpdateTime: "2025-07-21T05:45:32Z"
+    - lastTransitionTime: '2025-07-18T07:48:33Z'
+      lastUpdateTime: '2025-07-23T08:58:06Z'
+      message: ReplicaSet "n8n-7fc64bfcd9" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: 'True'
+      type: Progressing
+    - lastTransitionTime: '2025-07-23T08:58:09Z'
+      lastUpdateTime: '2025-07-23T08:58:09Z'
       message: Deployment has minimum availability.
       reason: MinimumReplicasAvailable
-      status: "True"
+      status: 'True'
       type: Available
-    - lastTransitionTime: "2025-07-18T07:48:33Z"
-      lastUpdateTime: "2025-07-21T06:20:45Z"
-      message: ReplicaSet "n8n-6bc8bfcccb" has successfully progressed.
-      reason: NewReplicaSetAvailable
-      status: "True"
-      type: Progressing
-  observedGeneration: 50
+  observedGeneration: 105
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
 
 ---
 apiVersion: v1
@@ -122,7 +152,7 @@ metadata:
     k8s.kuboard.cn/name: n8n
   name: n8n
   namespace: dev
-  resourceVersion: "40175508"
+  resourceVersion: '40175508'
 spec:
   clusterIP: 10.33.52.139
   clusterIPs:
@@ -138,6 +168,8 @@ spec:
   type: ClusterIP
 status:
   loadBalancer: {}
+
+
 ```
 
 ## Second - 应用路由
