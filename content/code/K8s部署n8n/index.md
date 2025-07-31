@@ -41,30 +41,30 @@ docker load < n8n.tar.gz
 - n8n 服务运行需要一个固定的存储卷存储数据, 因此我们需要为这个服务添加存储卷，映射路径是`/path:/home/node/.n8n`
 - 除此之外，因为在这个 k8s 集群上还部署有很多其他的服务，并且服务之间是通过路由路径区分的，而不是通过子域名的方式，而 n8n 官方文档中默认推荐是按照子域名的方式部署。因此我们需要给容器服务添加一个环境变量`N8N_PATH=/n8n/`，以使得我们可以通过类似 example.com/n8n 这样的路径去访问 n8n 服务。
 - 容器服务运行在 `5678` 端口，因此需要开放此端口。
+- 由于我们仅仅在固定节点上上传了n8n的镜像，因此别忘记添加nodeName或nodeSelector限制服务运行节点
 
-- 当服务运行内容出现如下报错
-
-```log
-Invalid number value for N8N_PORT: tcp://10.33.151.62:5678
-No encryption key found - Auto-generating and saving to: /home/node/.n8n/config
-Error: Command "start" not found
-```
-
-- 则说明所配置的服务存储卷的权限有问题，n8n无法正确写入持久化信息，因此你可能需要在yaml中加入如下字段
+### 完整的Config yaml
 
 ```yaml
-          securityContext:
-            runAsGroup: 1000
-            runAsUser: 1000
+---
+apiVersion: v1
+data:
+  N8N_ENDPOINT_REST: n8nrest
+  N8N_HOST: example.com # 替换对应产线域名
+  N8N_PATH: /n8n/
+  WEBHOOK_URL: 'https://example.com/n8n/' # 替换对应产线域名
+kind: ConfigMap
+metadata:
+  annotations: {}
+  labels: {}
+  name: n8n-config
+  namespace: default
+  resourceVersion: '42737379'
+
 ```
 
-- 如果使用上述安全上下文配置依旧无法解决实际的权限问题，服务还是没有办法启动，那就只能去物理机器上寻找实际映射的存储卷目录修改其存储权限。n8n内使用的Linux权限是```1000:1000```, 因此直接在容器宿主机上使用修改文件权限将整个映射目录权限修改：
 
-```shell
-sudo chown -R 1000:1000 ./n8n
-```
-
-- 总体服务的yaml范例
+### 完整的service yaml范例
 
 ```yaml
 ---
@@ -76,8 +76,8 @@ metadata:
   labels:
     k8s.kuboard.cn/name: n8n
   name: n8n
-  namespace: dev
-  resourceVersion: '41207644'
+  namespace: default
+  resourceVersion: '42737473'
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
@@ -98,12 +98,11 @@ spec:
       labels:
         k8s.kuboard.cn/name: n8n
     spec:
+      affinity: {}
       containers:
-        - env:
-            - name: N8N_PATH
-              value: /n8n/
-            - name: N8N_HOST
-              value: example.com
+        - envFrom:
+            - configMapRef:
+                name: n8n-config
           image: 'docker.n8n.io/n8nio/n8n:latest'
           imagePullPolicy: IfNotPresent
           name: n8n
@@ -112,18 +111,22 @@ spec:
               name: http
               protocol: TCP
           resources: {}
-          securityContext:
-            runAsGroup: 1000
-            runAsUser: 1000
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           volumeMounts:
-            - mountPath: /home/node/.n8n
+            - mountPath: /home/node/
               name: volume-n8n-data
       dnsPolicy: ClusterFirst
+      nodeSelector:
+          kubernetes.io/hostname: your-node-name # 替换成对应的node
       restartPolicy: Always
       schedulerName: default-scheduler
-      securityContext: {}
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: Always
+        runAsGroup: 1000
+        runAsUser: 1000
+        seLinuxOptions: {}
       terminationGracePeriodSeconds: 30
       volumes:
         - name: volume-n8n-data
@@ -133,18 +136,18 @@ status:
   availableReplicas: 1
   conditions:
     - lastTransitionTime: '2025-07-18T07:48:33Z'
-      lastUpdateTime: '2025-07-23T08:58:06Z'
-      message: ReplicaSet "n8n-7fc64bfcd9" has successfully progressed.
+      lastUpdateTime: '2025-07-29T03:10:13Z'
+      message: ReplicaSet "n8n-6d5df5f769" has successfully progressed.
       reason: NewReplicaSetAvailable
       status: 'True'
       type: Progressing
-    - lastTransitionTime: '2025-07-23T08:58:09Z'
-      lastUpdateTime: '2025-07-23T08:58:09Z'
+    - lastTransitionTime: '2025-07-31T02:29:24Z'
+      lastUpdateTime: '2025-07-31T02:29:24Z'
       message: Deployment has minimum availability.
       reason: MinimumReplicasAvailable
       status: 'True'
       type: Available
-  observedGeneration: 105
+  observedGeneration: 183
   readyReplicas: 1
   replicas: 1
   updatedReplicas: 1
@@ -157,12 +160,12 @@ metadata:
   labels:
     k8s.kuboard.cn/name: n8n
   name: n8n
-  namespace: dev
+  namespace: default
   resourceVersion: '40175508'
 spec:
-  clusterIP: 10.33.52.139
+  clusterIP: 10.0.0.100
   clusterIPs:
-    - 10.33.52.139
+    - 10.0.0.100
   ports:
     - name: skn4eq
       port: 5678
@@ -174,8 +177,6 @@ spec:
   type: ClusterIP
 status:
   loadBalancer: {}
-
-
 ```
 
 ## Second - 应用路由
@@ -186,6 +187,7 @@ n8n 默认的部署方式是推荐基于子域名，因此需要按照路径路�
 - 同是重头戏的 path rewrite, 需要重写 除了默认的 n8n 重写到 / 路径，还需要重写如下两条：
   - /assets/ -> /n8n/assets/
   - /static/ -> /n8n/static/
+- 自从n8n 1.102.0版本以后，ingress中对于静态文件反向代理并重写路径和restful api的路径匹配需要分开形成两个ingress 
 
 ```yaml
 nginx.ingress.kubernetes.io/configuration-snippet: |
@@ -194,7 +196,7 @@ nginx.ingress.kubernetes.io/configuration-snippet: |
 nginx.ingress.kubernetes.io/rewrite-target: /$2
 ```
 
-- 完整的 ingress 服务 yaml
+### 1.102.0 版本之前
 
 ```yaml
 ---
@@ -208,11 +210,11 @@ metadata:
       rewrite ^/static/(.*)$ /n8n/static/$1 redirect;
     nginx.ingress.kubernetes.io/rewrite-target: /$2
   name: n8n-ingress
-  namespace: dev
+  namespace: default
   resourceVersion: "40791462"
 spec:
   rules:
-    - host: example.com
+    - host: example.com   # 替换成产线环境的域名
       http:
         paths:
           - backend:
@@ -231,12 +233,98 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
+        - example.com           # 替换成产线环境
+      secretName: example.com   # 替换成产线环境
+status:
+  loadBalancer:
+    ingress:
+      - hostname: localhost
+```
+
+### 1.102.0 版本之后
+
+```yaml
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^/assets/(.*)$ /n8n/assets/$1 redirect;
+      rewrite ^/static/(.*)$ /n8n/static/$1 redirect;
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  name: n8n-ingress
+  namespace: default
+  resourceVersion: '42736928'
+spec:
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: n8n
+                port:
+                  number: 5678
+            path: /n8n(/|$)(.*)
+            pathType: Prefix
+  tls:
+    - hosts:
+        - example.com
+      secretName: example.com
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: n8n-rest-ingress
+  namespace: default
+  resourceVersion: '42737251'
+spec:
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: n8n
+                port:
+                  number: 5678
+            path: /n8nrest
+            pathType: Prefix
+  tls:
+    - hosts:
         - example.com
       secretName: example.com
 status:
   loadBalancer:
     ingress:
       - hostname: localhost
+```
+
+## Command "start" not found
+
+- 当服务运行内容出现如下报错
+
+```log
+Invalid number value for N8N_PORT: tcp://10.0.0.100:5678
+No encryption key found - Auto-generating and saving to: /home/node/.n8n/config
+Error: Command "start" not found
+```
+
+- 则说明所配置的服务存储卷的权限有问题，n8n无法正确写入持久化信息，因此你可能需要在yaml中加入如下字段
+
+```yaml
+          securityContext:
+            runAsGroup: 1000
+            runAsUser: 1000
+```
+
+- 如果使用上述安全上下文配置依旧无法解决实际的权限问题，服务还是没有办法启动，那就只能去物理机器上寻找实际映射的存储卷目录修改其存储权限。n8n内使用的Linux权限是```1000:1000```, 因此直接在容器宿主机上使用修改文件权限将整个映射目录权限修改：
+
+```shell
+sudo chown -R 1000:1000 ./n8n
 ```
 
 ## 并发控制参数
