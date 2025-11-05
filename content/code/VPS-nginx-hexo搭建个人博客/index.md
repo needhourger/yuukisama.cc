@@ -83,7 +83,7 @@ comments: true
         ```
         npm install
         ```
-    **坑：以上两步必不可缺，否则会产生缺少依赖问题，列入不生成静态文件（如x.html）的问题**
+    **坑：以上两步必不可缺，否则会产生缺少依赖问题，例如不生成静态文件（如x.html）的问题**
 
 1. 配置你的站点：
     * 修改博客目录下的_congfig.yml文件[官方教程](https://hexo.io/zh-cn/docs/configuration)

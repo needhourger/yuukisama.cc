@@ -107,7 +107,7 @@ gzip -d immortalwrt-24.10.1-x86-64-generic-ext4-combined-efi.qcow2.gz
 qm importdisk 102 immortalwrt-24.10.1-x86-64-generic-ext4-combined-efi.qcow2 local-lvm
 ```
 
-1. 导入完成后会到虚拟机配置，选择“硬件”可以看到又多了个“未使用的磁盘 0”，双击 ta 添加这个磁盘到虚拟机中。参数选项保持默认即可。
+1. 导入完成后回到虚拟机配置，选择"硬件"可以看到又多了个"未使用的磁盘 0"，双击 ta 添加这个磁盘到虚拟机中。参数选项保持默认即可。
    ![12](image-12.png)
 
 1. 磁盘添加完成之后，点击左侧“选项”页，将其添加到“引导顺序”中设置为第一位。

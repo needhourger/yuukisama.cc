@@ -40,11 +40,11 @@ draft: false
 1. 在命令提示符内输入如下命令以获取目前电脑上的所有盘符并确定 windows 系统盘位置
 
    ```shell
-   dispart
+   diskpart
    list volume
    ```
 
-   理论上可以看到当前系统上盘符的情况类似如下图。其中使用 `Windows-SSD` 一类标记的就是 C 盘。但是笔者在这里实践的情况下遇到了不一样的情况，并没有任何一个盘符标记了 `Windows-SSD` 并且其实这里的盘符 C 盘也不是真正的系统盘，真正的系统板是 D 盘的情况。其实这里更推荐 `exit` 退出 diskpart，并命令行中使用 `dir` 命令罗列各个刚刚出现的各个盘符查看其目录结构，找到包含 windows 目录的盘符，这个就是真正的系统盘所在盘符。
+   理论上可以看到当前系统上盘符的情况类似如下图。其中使用 `Windows-SSD` 一类标记的就是 C 盘。但是笔者在这里实践的情况下遇到了不一样的情况，并没有任何一个盘符标记了 `Windows-SSD` 并且其实这里的盘符 C 盘也不是真正的系统盘，真正的系统盘是 D 盘的情况。其实这里更推荐 `exit` 退出 diskpart，并命令行中使用 `dir` 命令罗列各个刚刚出现的各个盘符查看其目录结构，找到包含 windows 目录的盘符，这个就是真正的系统盘所在盘符。
    ![4](image-4.png)
 
 1. 假定刚刚找到的系统盘盘符为 C， 使用 `exit` 退出 diskpart。输入如下命令备份 `Utilman.exe` 到 C 盘根目录。
@@ -56,14 +56,14 @@ draft: false
 1. 接下来将 `C:\Windows\System32\Utilman.exe` 程序覆盖为 `cmd.exe`
 
    ```powershell
-   del C:\Windows\Systme32\Utilman.exe
+   del C:\Windows\System32\Utilman.exe
    copy C:\Windows\System32\cmd.exe C:\Windows\System32\Utilman.exe
    start C:\windows\system32\Utilman.exe
    ```
 
 1. 执行完刚刚的覆盖操作后在命令行输入 `wpeutil reboot` 命令重启电脑。
 
-1. 再次会到登录页面的时，右下角“小人”图案代表的辅助系统其实已经变成了 `cmd.exe` 的入口，只要点击小人就会启动 cmd 命令行。
+1. 再次回到登录页面的时候，右下角"小人"图案代表的辅助系统其实已经变成了 `cmd.exe` 的入口，只要点击小人就会启动 cmd 命令行。
 
    ![5](image-5.png)
 
@@ -79,7 +79,7 @@ draft: false
 
    1. 到这里位置你已经可以使用 123456 作为这个被遗忘的本地账户的密码登录到该电脑中了。
 
-1. 最后一部还原 `Utilman.exe` 到本身目录。
+1. 最后一步还原 `Utilman.exe` 到本身目录。
 
    打开具有管理员权限的命令行，输入以下指令将之前被替换为 cmd.exe 的 Utilman.exe 文件还原为备份的真正的 Utilman.exe
 
@@ -89,6 +89,6 @@ draft: false
    start C:\Windows\System32\Utilman.exe
    ```
 
-   当第三条 start 命令回车之后点自动弹出 Windows 的设置页面即说明还原成功，这时候即可删除 C 盘根目录下备份的 `Utilman.exe` 文件。当然个人感觉这里完全可是使用任务管理器操作，直接复制粘贴即可。
+   当第三条 start 命令回车之后会自动弹出 Windows 的设置页面即说明还原成功，这时候即可删除 C 盘根目录下备份的 `Utilman.exe` 文件。当然个人感觉这里完全可是使用任务管理器操作，直接复制粘贴即可。
 
 1. PS **如果重置密码前你是用的是 Pin 码登录，在重置密码成功之后需要将登录验证方式切换为密码验证，然后使用重置后的密码登录才可以哦。**

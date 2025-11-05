@@ -36,7 +36,7 @@ brew install zilliztech/tap/milvus-backup
   | ----------------- | ---------------- |
   | v2.3.0 and above  | v0.4.0 and above |
   | v2.2.9 and above  | v0.3.0 and above |
-  | v2.2.0 to v2.2.8I | v0.1.0 to v0.2.2 |
+  | v2.2.0 to v2.2.8 | v0.1.0 to v0.2.2 |
 
 ### 创建备份配置
 
