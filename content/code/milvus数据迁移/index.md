@@ -4,7 +4,7 @@ subtitle: ""
 description: ""
 date: 2025-04-16T15:51:19+08:00
 image: ""
-tags: []
+tags: [AI,LLM,数据库]
 categories: []
 draft: false
 ---

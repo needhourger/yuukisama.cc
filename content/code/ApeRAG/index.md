@@ -4,8 +4,8 @@ subtitle: ""
 description: ""
 date: 2025-10-21T14:08:55+08:00
 image: ""
-tags: []
-categories: []
+tags: ["AI","LLM"]
+categories: ["AI"]
 draft: false
 ---
 
